@@ -62,6 +62,7 @@ const updateUser = async (req, res) => {
 
   try {
     const result = await dynamoDB.update(params).promise();
+    console.log('User updated successfully:', user);
     res.status(200).json(result.Attributes);
   } catch (error) {
     console.error('Error updating user:', error);
@@ -79,7 +80,8 @@ const deleteUser = async (req, res) => {
 
   try {
     await dynamoDB.delete(params).promise();
-    res.status(204).send();
+    res.status(204).send("User deleted successfully");
+    return; // Exit the function after sending the response
   } catch (error) {
     console.error('Error deleting user:', error);
     res.status(500).json({ error: 'Could not delete user' });
