@@ -62,7 +62,7 @@ const updateUser = async (req, res) => {
 
   try {
     const result = await dynamoDB.update(params).promise();
-    console.log('User updated successfully:', user);
+    console.log('User updated successfully:', result.Attributes);
     res.status(200).json(result.Attributes);
   } catch (error) {
     console.error('Error updating user:', error);
